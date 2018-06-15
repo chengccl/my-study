@@ -1,11 +1,16 @@
 package com.study.my.pro;
 
+import com.study.my.repository.PropertyRepository;
+import com.study.my.utils.PropertiesUtils;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
+import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -18,6 +23,20 @@ import java.util.Properties;
 @Configuration
 @ConfigurationProperties
 public class CustomProperties extends PropertyPlaceholderConfigurer {
+
+    @Autowired
+    private PropertyRepository propertyRepository;
+
+    @Autowired
+    @Qualifier("testDS")
+    private DataSource dataSource;
+
+//    @Bean
+//    @Qualifier("testProperty")
+//    public Property test() {
+//        System.out.println(propertyRepository.findAll().size());
+//        return new Property();
+//    }
 
     /**
      * 重载合并属性实现
@@ -41,11 +60,16 @@ public class CustomProperties extends PropertyPlaceholderConfigurer {
     private Map<String, String> loadConfigs() {
         Map<String, String> configs = new HashMap<>();
 
-        configs.put("spring.data.mongodb.uri", "mongodb://mongo.host:27017/propertyTest");
-        configs.put("spring.data.mongodb.repositories.enabled", "true");
+//        System.out.println(propertyRepository.findAll().get(0).getPropertyName());
+
+        Properties properties = PropertiesUtils.loadProps("/config.properties");
 
 
-        configs.put("hello.value", "hello1");
+        configs.put("spring.data.mongodb.uri", properties.getProperty("spring.data.mongodb.uri"));
+        configs.put("spring.data.mongodb.repositories.enabled", properties.getProperty("spring.data.mongodb.repositories.enabled"));
+
+
+        configs.put("hello.value", properties.getProperty("hello.value"));
 
         return configs;
     }

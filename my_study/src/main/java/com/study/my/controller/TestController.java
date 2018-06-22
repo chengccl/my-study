@@ -2,7 +2,6 @@ package com.study.my.controller;
 
 import com.study.my.dao.InfoDao;
 import com.study.my.domain.Info;
-import com.study.my.repository.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+
+//import com.study.my.repository.PropertyRepository;
 
 /**
  * @author sk-cailicheng on 2018/6/14.
@@ -26,14 +27,14 @@ public class TestController {
     @Autowired
     private InfoDao infoDao;
 
-    @Autowired
-    private PropertyRepository propertyRepository;
+//    @Autowired
+//    private PropertyRepository propertyRepository;
 
     @RequestMapping(path = "/save", method = RequestMethod.GET)
     public String save(HttpServletRequest request) {
         Info info = new Info();
         info.setName("hello");
         infoDao.save(info);
-        return value + " " + mongo + propertyRepository.findOne(1L);
+        return value + " " + mongo;
     }
 }

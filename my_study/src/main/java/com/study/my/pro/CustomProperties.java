@@ -1,16 +1,11 @@
 package com.study.my.pro;
 
-import com.study.my.repository.PropertyRepository;
 import com.study.my.utils.PropertiesUtils;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
-import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -21,16 +16,15 @@ import java.util.Properties;
  * @author sk-cailicheng on 2018/6/14.
  */
 @Configuration
-@ConfigurationProperties
 public class CustomProperties extends PropertyPlaceholderConfigurer {
 
-    @Autowired
-    private PropertyRepository propertyRepository;
-
-    @Autowired
-    @Qualifier("testDS")
-    private DataSource dataSource;
-
+//    @Autowired
+//    private PropertyRepository propertyRepository;
+//
+//    @Autowired
+//    @Qualifier("testDS")
+//    private DataSource dataSource;
+//
 //    @Bean
 //    @Qualifier("testProperty")
 //    public Property test() {

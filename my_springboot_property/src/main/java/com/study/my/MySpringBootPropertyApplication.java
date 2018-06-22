@@ -7,9 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 //@EnableConfigurationProperties(PropertyRepository.class)
-public class MyStudyApplication {
-
+public class MySpringBootPropertyApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(MyStudyApplication.class, args);
+		SpringApplication.run(MySpringBootPropertyApplication.class, args);
 	}
 }

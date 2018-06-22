@@ -1,6 +1,5 @@
-package com.study.my.pro;
+package com.study.my.property;
 
-import com.study.my.utils.PropertiesUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
@@ -17,20 +16,6 @@ import java.util.Properties;
  */
 @Configuration
 public class CustomProperties extends PropertyPlaceholderConfigurer {
-
-//    @Autowired
-//    private PropertyRepository propertyRepository;
-//
-//    @Autowired
-//    @Qualifier("testDS")
-//    private DataSource dataSource;
-//
-//    @Bean
-//    @Qualifier("testProperty")
-//    public Property test() {
-//        System.out.println(propertyRepository.findAll().size());
-//        return new Property();
-//    }
 
     /**
      * 重载合并属性实现
@@ -54,16 +39,14 @@ public class CustomProperties extends PropertyPlaceholderConfigurer {
     private Map<String, String> loadConfigs() {
         Map<String, String> configs = new HashMap<>();
 
-//        System.out.println(propertyRepository.findAll().get(0).getPropertyName());
+//        Properties properties = PropertiesUtils.loadProps("/config.properties");
+//        configs.put("spring.data.mongodb.uri", properties.getProperty("spring.data.mongodb.uri"));
+//        configs.put("spring.data.mongodb.repositories.enabled", properties.getProperty("spring.data.mongodb.repositories.enabled"));
+//        configs.put("hello.value", properties.getProperty("hello.value"));
 
-        Properties properties = PropertiesUtils.loadProps("/config.properties");
-
-
-        configs.put("spring.data.mongodb.uri", properties.getProperty("spring.data.mongodb.uri"));
-        configs.put("spring.data.mongodb.repositories.enabled", properties.getProperty("spring.data.mongodb.repositories.enabled"));
-
-
-        configs.put("hello.value", properties.getProperty("hello.value"));
+        configs.put("spring.data.mongodb.uri", "mongodb://mongo.host:27017/propertyTest");
+        configs.put("spring.data.mongodb.repositories.enabled", "true");
+        configs.put("hello.value", "hello2");
 
         return configs;
     }
